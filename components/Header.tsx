@@ -2,7 +2,7 @@ import { Slider } from "./Slider";
 
 const Header = () => {
   return (
-    <div>
+    <div className=" z-50">
       <div>
         <p className=" text-white text-center font-extrabold text-[32px] lg:text-[120px] font-prompt not-italic tracking-[0.25em] uppercase leading-[181px]">
           North Lion

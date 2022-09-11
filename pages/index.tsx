@@ -1,12 +1,18 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import About from "../components/About";
 import Bottom from "../components/Bottom";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
+import Navigation from "../components/Navigation";
 import SectionOne from "../components/SectionOne";
 
 const Home: NextPage = () => {
+  const [isNav, setIsNav] = useState(false);
+
+  console.log(isNav);
+
   return (
     <div>
       <Head>
@@ -15,31 +21,39 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className=" min-h-screen bg-black">
-        <div className=" mx-[23px] md:mx-[81px]">
-          {/* navbar */}
-          <div>
-            <Navbar />
-          </div>
+      <div className=" min-h-screen bg-black relative">
+        <div
+          className={` ${
+            isNav ? "opacity-100 z-50 " : " opacity-0 -z-10"
+          } absolute duration-500 ease-in-out bg-back h-full w-full `}
+        >
+          <Navigation isNav={isNav} setIsNav={setIsNav} />
+        </div>
+        <div className=" z-50">
+          <div
+            className={` ${
+              isNav ? "opacity-0" : " opacity-100 z-50"
+            } mx-[23px] md:mx-[81px] duration-500 ease-in-out z-50`}
+          >
+            <div>
+              <Navbar isNav={isNav} setIsNav={setIsNav} />
+            </div>
 
-          {/* header */}
-          <div className=" mt-[50px]">
-            <Header />
-          </div>
+            <div className=" mt-[50px]">
+              <Header />
+            </div>
 
-          {/* about */}
-          <div className=" my-[145px]">
-            <About />
-          </div>
+            <div className=" my-[145px]">
+              <About />
+            </div>
 
-          {/* section 01 */}
-          <div>
-            <SectionOne />
-          </div>
+            <div>
+              <SectionOne />
+            </div>
 
-          {/* bottom */}
-          <div className=" pt-[100px] pb-[50px]">
-            <Bottom />
+            <div className=" pt-[100px] pb-[50px]">
+              <Bottom />
+            </div>
           </div>
         </div>
       </div>
